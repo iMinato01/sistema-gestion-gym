@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="656.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField fx:id="txtNombreTrabajador" alignment="CENTER" disable="true" layoutX="40.0" layoutY="490.0" prefHeight="30.0" prefWidth="250.0" promptText="Nombre" style="-fx-background-radius: 10;" />
+      <TextField fx:id="txtApellidosTrabajador" alignment="CENTER" disable="true" layoutX="40.0" layoutY="530.0" prefHeight="30.0" prefWidth="250.0" promptText="Apellidos" style="-fx-background-radius: 10;" />
+      <TextField fx:id="txtCorreoTrabajador" alignment="CENTER" disable="true" layoutX="40.0" layoutY="570.0" prefHeight="30.0" prefWidth="250.0" promptText="Edad" style="-fx-background-radius: 10;" />
+      <TextField fx:id="txtTelefonoTrabajador" alignment="CENTER" disable="true" layoutX="40.0" layoutY="610.0" prefHeight="30.0" prefWidth="250.0" promptText="Teléfono" style="-fx-background-radius: 10;" />
+      <Label fx:id="lblTitulo" alignment="CENTER" layoutY="-2.0" prefHeight="50.0" prefWidth="656.0" text="Detalles de Mantenimiento">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblSubtitulo1" alignment="CENTER" layoutX="38.0" layoutY="449.0" prefHeight="36.0" prefWidth="250.0" text="Información del Trabajador">
+         <font>
+            <Font name="System Italic" size="17.0" />
+         </font>
+      </Label>
+      <Separator layoutX="319.0" layoutY="499.0" orientation="VERTICAL" prefHeight="147.0" prefWidth="5.0" />
+      <TextField fx:id="txtNombreEquipo" alignment="CENTER" disable="true" layoutX="360.0" layoutY="490.0" prefHeight="30.0" prefWidth="250.0" promptText="Nombre" style="-fx-background-radius: 10;" />
+      <TextField fx:id="txtModeloEquipo" alignment="CENTER" disable="true" layoutX="360.0" layoutY="530.0" prefHeight="30.0" prefWidth="250.0" promptText="Modelo" style="-fx-background-radius: 10;" />
+      <TextField fx:id="txtSerieEquipo" alignment="CENTER" disable="true" layoutX="360.0" layoutY="570.0" prefHeight="30.0" prefWidth="250.0" promptText="Serie" style="-fx-background-radius: 10;" />
+      <Label fx:id="lblSubtitulo2" alignment="CENTER" layoutX="357.0" layoutY="449.0" prefHeight="36.0" prefWidth="250.0" text="Información de Equipo">
+         <font>
+            <Font name="System Italic" size="17.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="dpUltimoMantenimiento" disable="true" layoutX="360.0" layoutY="610.0" prefHeight="30.0" prefWidth="250.0" promptText="Último Mantenimiento" />
+      <Label fx:id="lblSubtitulo3" alignment="CENTER" layoutX="194.0" layoutY="36.0" prefHeight="36.0" prefWidth="250.0" text="Información de Mantenimiento">
+         <font>
+            <Font name="System Italic" size="17.0" />
+         </font>
+      </Label>
+      <DatePicker disable="true" layoutX="180.0" layoutY="117.0" prefHeight="30.0" prefWidth="300.0" promptText="Dia del Mantenimiento" />
+      <Separator layoutX="-3.0" layoutY="443.0" prefHeight="6.0" prefWidth="656.0" />
+      <TextField fx:id="txtPrecio" alignment="CENTER" disable="true" layoutX="180.0" layoutY="197.0" prefHeight="30.0" prefWidth="300.0" promptText="Actividad" style="-fx-background-radius: 10;" />
+      <TextField fx:id="txtHoraInicio" alignment="CENTER" disable="true" layoutX="180.0" layoutY="157.0" prefHeight="30.0" prefWidth="300.0" promptText="Hora de Inicio" style="-fx-background-radius: 10;" />
+      <TextField fx:id="txtPrecio1" alignment="CENTER" disable="true" layoutX="180.0" layoutY="237.0" prefHeight="30.0" prefWidth="300.0" promptText="Descripción" style="-fx-background-radius: 10;" />
+      <TextField fx:id="txtPrecio11" alignment="CENTER" disable="true" layoutX="180.0" layoutY="277.0" prefHeight="30.0" prefWidth="300.0" promptText="Tipo" style="-fx-background-radius: 10;" />
+      <TextField fx:id="txtPrecio111" alignment="CENTER" disable="true" layoutX="180.0" layoutY="317.0" prefHeight="30.0" prefWidth="300.0" promptText="Estatus" style="-fx-background-radius: 10;" />
+      <DatePicker disable="true" layoutX="180.0" layoutY="357.0" prefHeight="30.0" prefWidth="300.0" promptText="Dia del Mantenimiento" />
+      <TextField fx:id="txtPrecio1111" alignment="CENTER" disable="true" layoutX="180.0" layoutY="397.0" prefHeight="30.0" prefWidth="300.0" promptText="Estatus" style="-fx-background-radius: 10;" />
+      <TextField fx:id="txtIdTrabajador" alignment="CENTER" layoutX="178.0" layoutY="76.0" prefHeight="30.0" prefWidth="150.0" promptText="ID" style="-fx-background-radius: 10;" />
+      <Button fx:id="btnValidarTrabajador" layoutX="349.0" layoutY="76.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" style="-fx-background-radius: 10;" text="Validar" textFill="#948787">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
