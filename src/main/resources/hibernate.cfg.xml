@@ -12,5 +12,6 @@
         <mapping class="mdt.caf.objetos.Plan"/>
         <mapping class="mdt.caf.objetos.Renta"/>
         <mapping class="mdt.caf.objetos.Trabajador"/>
+        <mapping class="mdt.caf.objetos.Producto"/>
     </session-factory>
 </hibernate-configuration>

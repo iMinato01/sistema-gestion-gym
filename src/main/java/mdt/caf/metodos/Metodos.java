@@ -5,6 +5,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import mdt.caf.objetos.Cliente;
+import mdt.caf.objetos.Producto;
 import mdt.caf.objetos.Trabajador;
 import mdt.caf.objetos.Usuario;
 import org.hibernate.HibernateException;
@@ -23,6 +24,7 @@ public class Metodos {
     public static Stage stagePrincipal;
     public static Stage referenciaStage;
     public static Trabajador referenciaTrabajador;
+    public static Producto referenciaProducto;
     public static Configuration config = new Configuration().configure();
     public static SessionFactory sessionFactory = config.buildSessionFactory();
 
@@ -593,6 +595,163 @@ public class Metodos {
             referenciaStage.close();
         } catch (HibernateException e){
             Mensaje.error("Ocurrió un error al interactuar con la base de datos\n Código: " + e.getMessage());
+        }
+    }
+
+    public static boolean validarProducto(TextField txtClave){
+        String clave = txtClave.getText();
+        if(clave.isEmpty()){
+            Mensaje.error("No puedes dejar la clave vacía");
+        }
+        else{
+            try(Session session = sessionFactory.openSession()){
+                String hql = "FROM Producto C WHERE C.clave = :clave";
+                Query<Producto> productoQuery = session.createQuery(hql, Producto.class);
+                productoQuery.setParameter("clave", clave);
+                referenciaProducto = productoQuery.uniqueResult();
+                if(referenciaProducto != null){
+                    return true;
+                }
+            } catch (HibernateException e){
+                Mensaje.error("Ocurrió un error al interactuar con la base de datos\n Código: " + e.getMessage());
+            }
+        }
+        return false;
+    }
+
+    public static boolean validarClaveProducto(TextField txtClave){
+        String clave = txtClave.getText();
+        if(clave.isEmpty()){
+            Mensaje.error("No puedes dejar la clave vacía");
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    public static boolean validarNombreProducto(TextField txtNombre){
+        String nombre = txtNombre.getText();
+        if(nombre.isEmpty()){
+            Mensaje.error("No puedes dejar el nombre vacío");
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    public static boolean validarUnidadProducto(TextField txtUnidad){
+        String unidad = txtUnidad.getText();
+        if(unidad.isEmpty()){
+            Mensaje.error("No puedes dejar la unidad del producto vacía");
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    public static boolean validarPrecioProducto(TextField txtPrecio){
+        String precioTexto = txtPrecio.getText();
+        if(precioTexto.isEmpty()){
+            Mensaje.error("No puedes dejar el precio vacío");
+        }
+        else {
+            try{
+                float precio = Float.parseFloat(precioTexto);
+                if(precio <= 0){
+                    Mensaje.error("El precio del producto debe ser mayor a 0");
+                }
+                else{
+                    return true;
+                }
+            } catch (NumberFormatException e){
+                Mensaje.error("El precio del producto debe ser un valor numérico");
+            }
+        }
+        return false;
+    }
+
+    public static boolean validarIngresoStock(TextField txtNuevoStock){
+        String stockTexto = txtNuevoStock.getText();
+        if(stockTexto.isEmpty()){
+            Mensaje.error("No puedes dejar el stock vacío");
+        }
+        else {
+            try{
+                float precio = Float.parseFloat(stockTexto);
+                if(precio <= 0){
+                    Mensaje.error("La cantidad a ingresar debe ser mayor a 0");
+                }
+                else{
+                    return true;
+                }
+            } catch (NumberFormatException e){
+                Mensaje.error("Debes ingresar una cantidad valida");
+            }
+        }
+        return false;
+    }
+
+    public static void crearProducto(TextField clave, TextField nombre, TextField unidad, TextField precio){
+        if(validarClaveProducto(clave) && validarNombreProducto(nombre) && validarUnidadProducto(unidad) && validarPrecioProducto(precio)){
+            if(!validarProducto(clave)){
+                try(Session session = sessionFactory.openSession()){
+                    session.beginTransaction();
+                    referenciaProducto = new Producto();
+                    referenciaProducto.setClave(clave.getText());
+                    referenciaProducto.setNombre(nombre.getText());
+                    referenciaProducto.setUnidad(unidad.getText());
+                    referenciaProducto.setPrecio(Float.parseFloat(precio.getText()));
+                    session.persist(referenciaProducto);
+                    session.getTransaction().commit();
+                    Mensaje.informacion("El producto fue registrado exitosamente");
+                    referenciaStage.close();
+                    referenciaProducto = null;
+                } catch (HibernateException e){
+                    Mensaje.error("Ocurrió un error al interactuar con la base de datos\n Código: " + e.getMessage());
+                }
+            }
+            else{
+                Mensaje.error("Ya hay un producto registrado con esta clave");
+            }
+        }
+        else{
+            System.out.println("ewlse " + referenciaProducto);
+        }
+    }
+
+    public static void editarProducto(TextField txtNombre, TextField txtUnidad, TextField txtPrecio){
+        if(validarNombreProducto(txtNombre) && validarUnidadProducto(txtUnidad) && validarPrecioProducto(txtPrecio)){
+            try(Session session = sessionFactory.openSession()){
+                session.beginTransaction();
+                referenciaProducto.setNombre(txtNombre.getText());
+                referenciaProducto.setUnidad(txtUnidad.getText());
+                referenciaProducto.setPrecio(Float.parseFloat(txtPrecio.getText()));
+                session.merge(referenciaProducto);
+                session.getTransaction().commit();
+                Mensaje.informacion("El producto fue editado exitosamente");
+                referenciaProducto = null;
+                referenciaStage.close();
+            } catch (HibernateException e){
+                Mensaje.error("Ocurrió un error al interactuar con la base de datos\n Código: " + e.getMessage());
+            }
+        }
+    }
+
+    public static void agregarStock(TextField txtNuevoStock){
+        if(validarIngresoStock(txtNuevoStock)){
+            try(Session session = sessionFactory.openSession()){
+                session.beginTransaction();
+                referenciaProducto.setStock(referenciaProducto.getStock() + Float.parseFloat(txtNuevoStock.getText()));
+                session.merge(referenciaProducto);
+                session.getTransaction().commit();
+                Mensaje.informacion("Se agregaron las cantidades exitosamente");
+                referenciaStage.close();
+            } catch (HibernateException e){
+                Mensaje.error("Ocurrió un error al interactuar con la base de datos\n Código: " + e.getMessage());
+            }
         }
     }
 }

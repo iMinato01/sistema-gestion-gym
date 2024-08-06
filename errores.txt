@@ -1,0 +1,4 @@
+-- // Errores Encontrados // --
+*La primera sub-ventana abierta por primera vez se minimiza al generar el primer mensaje.
+* En la edición de trabajadores, se valida si el correo está duplicado, sin embargo si no se modifica el correo lo detectará como registrado, impidiendo guardar cambios.
+* Al validar si un producto existe, si se deja el campo de la clave vacío se evalúa 2 veces, enviando el mensaje de campo vacío y el de producto no encontrado.
