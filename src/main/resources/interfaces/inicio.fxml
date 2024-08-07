@@ -62,20 +62,20 @@
                      <children>
                         <TableView fx:id="tblProductos" layoutX="6.0" layoutY="58.0" prefHeight="357.0" prefWidth="693.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="58.0">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="ID" />
-                            <TableColumn prefWidth="75.0" text="Clave" />
-                              <TableColumn prefWidth="75.0" text="Producto" />
-                              <TableColumn prefWidth="102.0" text="Unidad" />
-                              <TableColumn prefWidth="102.0" text="Existencias" />
-                              <TableColumn prefWidth="83.0" text="Precio" />
-                              <TableColumn prefWidth="59.0" text="Estatus" />
+                            <TableColumn fx:id="idColProd" prefWidth="75.0" text="ID" />
+                            <TableColumn fx:id="claveColProd" prefWidth="75.0" text="Clave" />
+                              <TableColumn fx:id="nombreColProd" prefWidth="75.0" text="Producto" />
+                              <TableColumn fx:id="unidadColProd" prefWidth="102.0" text="Unidad" />
+                              <TableColumn fx:id="stockColProd" prefWidth="102.0" text="Existencias" />
+                              <TableColumn fx:id="precioColProd" prefWidth="83.0" text="Precio" />
+                              <TableColumn fx:id="estatusColProd" prefWidth="59.0" text="Estatus" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
                         <ButtonBar layoutX="14.0" prefHeight="40.0" prefWidth="200.0" />
-                        <ToolBar layoutX="-3.0" layoutY="1.0" prefHeight="50.0" prefWidth="490.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="212.0">
+                        <ToolBar layoutX="-3.0" layoutY="1.0" prefHeight="50.0" prefWidth="651.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="51.0">
                           <items>
                             <Button fx:id="btnRegistrarProducto" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" />
                               <Button fx:id="btnEditarProducto" layoutX="10.0" layoutY="18.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" />
@@ -83,11 +83,9 @@
                               <Button fx:id="btnSuspenderProducto" layoutX="98.0" layoutY="18.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" />
                           </items>
                         </ToolBar>
-                        <ToolBar layoutX="489.0" layoutY="1.0" prefHeight="50.0" prefWidth="259.0" AnchorPane.rightAnchor="0.0">
+                        <ToolBar layoutX="489.0" layoutY="1.0" prefHeight="50.0" prefWidth="61.0" AnchorPane.rightAnchor="0.0">
                            <items>
-                              <TextField fx:id="txtCampoBusquedaProducto" prefHeight="25.0" prefWidth="156.0" />
-                              <Button fx:id="btnBorrarCampoProducto" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" />
-                              <Button fx:id="btnBuscarProducto" layoutX="163.0" layoutY="18.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" />
+                              <Button fx:id="btnActualizarProductos" alignment="CENTER" contentDisplay="RIGHT" layoutX="163.0" layoutY="18.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" />
                            </items>
                         </ToolBar>
                      </children>
@@ -100,24 +98,24 @@
                      <children>
                         <TableView fx:id="tblTrabajadores" layoutX="6.0" layoutY="58.0" prefHeight="357.0" prefWidth="693.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="58.0">
                            <columns>
-                              <TableColumn prefWidth="75.0" text="ID" />
-                              <TableColumn prefWidth="75.0" text="Nombre" />
-                              <TableColumn prefWidth="75.0" text="Apellidos" />
-                              <TableColumn prefWidth="102.0" text="Edad" />
-                              <TableColumn prefWidth="71.0" text="CURP" />
-                              <TableColumn prefWidth="87.0" text="RFC" />
-                              <TableColumn prefWidth="59.0" text="NSS" />
-                              <TableColumn prefWidth="59.0" text="Teléfono" />
-                              <TableColumn prefWidth="59.0" text="Entrada" />
-                              <TableColumn prefWidth="59.0" text="Salida" />
-                              <TableColumn prefWidth="59.0" text="Estatus" />
+                              <TableColumn fx:id="idColTrab" prefWidth="75.0" text="ID" />
+                              <TableColumn fx:id="nombreColTrab" prefWidth="75.0" text="Nombre" />
+                              <TableColumn fx:id="apellidosColTrab" prefWidth="75.0" text="Apellidos" />
+                              <TableColumn fx:id="edadColTrab" prefWidth="102.0" text="Edad" />
+                              <TableColumn fx:id="curpColTrab" prefWidth="71.0" text="CURP" />
+                              <TableColumn fx:id="rfcColTrab" prefWidth="87.0" text="RFC" />
+                              <TableColumn fx:id="nssColTrab" prefWidth="59.0" text="NSS" />
+                              <TableColumn fx:id="telefonoColTrab" prefWidth="59.0" text="Teléfono" />
+                              <TableColumn fx:id="entradaColTrab" prefWidth="59.0" text="Entrada" />
+                              <TableColumn fx:id="salidaColTrab" prefWidth="59.0" text="Salida" />
+                              <TableColumn fx:id="estatusColTrab" prefWidth="59.0" text="Estatus" />
                            </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
                         <ButtonBar layoutX="14.0" prefHeight="40.0" prefWidth="200.0" />
-                        <ToolBar layoutX="-3.0" layoutY="1.0" prefHeight="50.0" prefWidth="490.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="212.0">
+                        <ToolBar layoutX="-3.0" layoutY="1.0" prefHeight="50.0" prefWidth="644.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="58.0">
                            <items>
                               <Button fx:id="btnRegistrarTrabajador" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" />
                               <Button fx:id="btnEditarTrabajador" layoutX="10.0" layoutY="18.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" />
@@ -125,11 +123,9 @@
                               <Button fx:id="btnSuspenderTrabajador" layoutX="98.0" layoutY="18.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" />
                            </items>
                         </ToolBar>
-                        <ToolBar layoutX="489.0" layoutY="1.0" prefHeight="50.0" prefWidth="259.0" AnchorPane.rightAnchor="0.0">
+                        <ToolBar layoutX="489.0" layoutY="1.0" prefHeight="50.0" prefWidth="61.0" AnchorPane.rightAnchor="0.0">
                            <items>
-                              <TextField fx:id="txtCampoBusquedaTrabajador" prefHeight="25.0" prefWidth="156.0" />
-                              <Button fx:id="btnBorrarCampoTrabajador" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" />
-                              <Button fx:id="btnBuscarTrabajador" layoutX="163.0" layoutY="18.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" />
+                              <Button fx:id="btnActualizarTrabajadores" layoutX="163.0" layoutY="18.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" />
                            </items>
                         </ToolBar>
                      </children>

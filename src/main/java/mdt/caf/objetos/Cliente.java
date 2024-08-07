@@ -13,6 +13,7 @@ public class Cliente extends Usuario{
     public Cliente(){
         super();
         this.fechaRegistro = LocalDate.now();
+        this.estatus = true;
     }
 
     public Membresia getMembresia() {

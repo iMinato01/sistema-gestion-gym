@@ -1,7 +1,10 @@
 package mdt.caf.metodos;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import mdt.caf.objetos.Cliente;
@@ -17,6 +20,9 @@ import org.hibernate.query.Query;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.List;
+
+
 
 public class Metodos {
     // **** Declaraciones globales **** //
@@ -499,30 +505,31 @@ public class Metodos {
         String salarioTexto = txtSalario.getText();
         String correo = txtCorreo.getText();
         if(validarNombre(nombre) && validarApellidos(apellidos) && validarEdad(edadTexto) && validarNumeroTelefonico(telefono)
-        && validarCurp(curp) && validarRfc(rfc) && validarNss(nss) && validarCategoria(categoria) && validarSalario(salarioTexto)
-        && !correoDuplicado(correo)){
-            try(Session session = sessionFactory.openSession()){
-                int edad = Integer.parseInt(edadTexto);
-                float salario = Float.parseFloat(salarioTexto);
-                referenciaTrabajador.setNombre(nombre);
-                referenciaTrabajador.setApellidos(apellidos);
-                referenciaTrabajador.setEdad(edad);
-                referenciaTrabajador.setNumeroTelefonico(telefono);
-                referenciaTrabajador.setCurp(curp);
-                referenciaTrabajador.setRfc(rfc);
-                referenciaTrabajador.setNss(nss);
-                referenciaTrabajador.setCategoria(categoria);
-                referenciaTrabajador.setSalario(salario);
-                referenciaTrabajador.setCorreo(correo);
-                session.beginTransaction();
-                session.merge(referenciaTrabajador);
-                session.getTransaction().commit();
-                Mensaje.informacion("Se modificó la información del Trabajador exitosamente");
-                referenciaStage.close();
-            } catch (NumberFormatException e){
-                Mensaje.error("La edad y el Salario deben ser valores numéricos");
-            } catch (HibernateException e){
-                Mensaje.error("Ocurrió un error al interactuar con la base de datos\n Código: " + e.getMessage());
+        && validarCurp(curp) && validarRfc(rfc) && validarNss(nss) && validarCategoria(categoria) && validarSalario(salarioTexto)){
+            if(referenciaTrabajador.getCorreo().equals(correo) || !correoDuplicado(correo)){
+                try(Session session = sessionFactory.openSession()){
+                    int edad = Integer.parseInt(edadTexto);
+                    float salario = Float.parseFloat(salarioTexto);
+                    referenciaTrabajador.setNombre(nombre);
+                    referenciaTrabajador.setApellidos(apellidos);
+                    referenciaTrabajador.setEdad(edad);
+                    referenciaTrabajador.setNumeroTelefonico(telefono);
+                    referenciaTrabajador.setCurp(curp);
+                    referenciaTrabajador.setRfc(rfc);
+                    referenciaTrabajador.setNss(nss);
+                    referenciaTrabajador.setCategoria(categoria);
+                    referenciaTrabajador.setSalario(salario);
+                    referenciaTrabajador.setCorreo(correo);
+                    session.beginTransaction();
+                    session.merge(referenciaTrabajador);
+                    session.getTransaction().commit();
+                    Mensaje.informacion("Se modificó la información del Trabajador exitosamente");
+                    referenciaStage.close();
+                } catch (NumberFormatException e){
+                    Mensaje.error("La edad y el Salario deben ser valores numéricos");
+                } catch (HibernateException e){
+                    Mensaje.error("Ocurrió un error al interactuar con la base de datos\n Código: " + e.getMessage());
+                }
             }
         }
     }
@@ -717,9 +724,6 @@ public class Metodos {
                 Mensaje.error("Ya hay un producto registrado con esta clave");
             }
         }
-        else{
-            System.out.println("ewlse " + referenciaProducto);
-        }
     }
 
     public static void editarProducto(TextField txtNombre, TextField txtUnidad, TextField txtPrecio){
@@ -752,6 +756,34 @@ public class Metodos {
             } catch (HibernateException e){
                 Mensaje.error("Ocurrió un error al interactuar con la base de datos\n Código: " + e.getMessage());
             }
+        }
+    }
+
+    public static void suspenderProducto(){
+
+    }
+
+    public static void mostrarTablaProductos(TableView<Producto> tblProductos){
+        String hql = "FROM Producto";
+        try(Session session = sessionFactory.openSession()) {
+            Query<Producto> query = session.createQuery(hql, Producto.class);
+            List<Producto> productos = query.list();
+                ObservableList<Producto> lista = FXCollections.observableArrayList(productos);
+                tblProductos.setItems(lista);
+        } catch (HibernateException e){
+            Mensaje.error("Ocurrió un error al interactuar con la base de datos\n Código: " + e.getMessage());
+        }
+    }
+
+    public static void mostrarTablaTrabajadores(TableView<Trabajador> tblTrabajadores){
+        String hql = "FROM Trabajador";
+        try(Session session = sessionFactory.openSession()) {
+            Query<Trabajador> query = session.createQuery(hql, Trabajador.class);
+            List<Trabajador> trabajadores = query.list();
+            ObservableList<Trabajador> lista = FXCollections.observableArrayList(trabajadores);
+            tblTrabajadores.setItems(lista);
+        } catch (HibernateException e){
+            Mensaje.error("Ocurrió un error al interactuar con la base de datos\n Código: " + e.getMessage());
         }
     }
 }

@@ -8,19 +8,17 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import mdt.caf.objetos.Producto;
+
 import java.io.IOException;
 
 import static mdt.caf.metodos.Metodos.referenciaStage;
 
 public class Configuradores {
-    public static void ajustarColumna(TableView<String> tabla){
+    public static <T> void ajustarColumna(TableView<T> tabla){
         tabla.getColumns().forEach(elemento -> {
             elemento.setReorderable(false);
         });
-    }
-
-    public static void ajustarFiltro(ComboBox<String> combobox, String elemento1, String elemento2, String elemento3, String elemento4){
-        combobox.setItems(FXCollections.observableArrayList(elemento1, elemento2, elemento3, elemento4));
     }
 
     public static void ajustarFiltro(ComboBox<String> combobox, String elemento1, String elemento2){
@@ -32,12 +30,6 @@ public class Configuradores {
             boton.setTooltip(new Tooltip(tooltip));
             Image icono = new Image(Configuradores.class.getResourceAsStream(rutaIcono));
             boton.setGraphic(new ImageView(icono));
-    }
-
-    public static void borrarCampo(Button boton, TextField campo){
-        boton.setOnAction(e -> {
-            campo.setText("");
-        });
     }
 
     public static void abrirVentana(Button boton, String rutaVentana, String tituloVentana){

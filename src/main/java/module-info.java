@@ -13,5 +13,5 @@ module mdt.caf {
     opens mdt.caf.metodos to javafx.fxml;
     exports mdt.caf;
     opens mdt.caf to javafx.fxml;
-    opens mdt.caf.objetos to org.hibernate.orm.core;
+    opens mdt.caf.objetos to org.hibernate.orm.core, javafx.base;
 }

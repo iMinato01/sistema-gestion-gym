@@ -35,7 +35,7 @@ public class EditarProductoControlador {
                 txtUnidad.setText(referenciaProducto.getUnidad());
                 txtPrecio.setText(String.valueOf(referenciaProducto.getPrecio()));
             }
-            else{
+            else if(!txtClave.getText().isEmpty()){
                 Mensaje.error("No hay ningun producto registrado con esta clave");
             }
         });

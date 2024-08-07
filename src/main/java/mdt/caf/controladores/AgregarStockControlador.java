@@ -38,7 +38,7 @@ public class AgregarStockControlador {
                 txtPrecio.setText(String.valueOf(referenciaProducto.getPrecio()));
                 txtStockActual.setText(String.valueOf(referenciaProducto.getStock()));
             }
-            else{
+            else if(!txtClave.getText().isEmpty()){
                 Mensaje.error("No hay ningun producto registrado con esta clave");
             }
         });
