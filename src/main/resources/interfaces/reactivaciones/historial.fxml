@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mdt.caf.controladores.VerHistorialesControlador">
+   <children>
+      <Label fx:id="lblTitulo" alignment="CENTER" layoutY="-2.0" prefHeight="50.0" prefWidth="700.0" text="Historial">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tblHistoriales" layoutX="10.0" layoutY="56.0" prefHeight="518.0" prefWidth="680.0">
+        <columns>
+          <TableColumn fx:id="idCol" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="tituloCol" prefWidth="75.0" text="Titulo" />
+            <TableColumn fx:id="descripcionCol" prefWidth="75.0" text="Descripcion" />
+            <TableColumn fx:id="fechaCol" prefWidth="75.0" text="Fecha" />
+            <TableColumn fx:id="horaCol" prefWidth="75.0" text="Hora" />
+            <TableColumn fx:id="creadorCol" prefWidth="75.0" text="Creador" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </children>
+</AnchorPane>
